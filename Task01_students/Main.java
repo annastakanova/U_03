@@ -1,10 +1,10 @@
 package by.epam.JavaEpam03_classes;
-//Создайте класс с именем Student, содержащий поля:
+//Создайте класс с именем Student, содержащий поля:
 // фамилия и инициалы,
 // номер группы,
 // успеваемость (массив из пяти элементов).
-// Создайте массив из десяти элементов такого типа.
-// Добавьте возможность вывода фамилий и номеров групп студентов,
+// Создайте массив из десяти элементов такого типа.
+// Добавьте возможность вывода фамилий и номеров групп студентов,
 // имеющих оценки, равные только 9 или 10.
 
 public class Main {
@@ -27,17 +27,17 @@ public class Main {
 
         for (int j = 0; j<students.length; j++) {
             for (int i = 0; i < 5; i++) {
-
                 if (students[j].getMarks()[i] == 9 || students[j].getMarks()[i] == 10) {
                     check = true;
-                } else {
+                }
+                else {
                     check = false;
                     break;
                 }
             }
-
-            if (check == true)
+            if (check == true) {
                 System.out.println("Фамилия ученика: " + students[j].getLastName() + ", группа " + students[j].getGroup());
+            }
         }
     }
 }
