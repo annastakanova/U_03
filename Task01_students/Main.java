@@ -10,7 +10,7 @@ package by.epam.JavaEpam03_classes;
 public class Main {
 
     public static void main(String[] args) {
-        Student[] students = {
+        Student[] st = {
                 new Student("Олег", "Власов", 1, new int[]{3, 4, 5, 6, 7}),
                 new Student("Иван", "Тургенев", 2, new int[]{5, 7, 5, 3, 2}),
                 new Student("Бэн", "Льюэс", 3, new int[]{9, 10, 9, 10, 10}),
@@ -23,21 +23,11 @@ public class Main {
                 new Student("Амедео", "Модильяни", 1, new int[]{9, 9, 9, 9, 10}),
         };
 
-        boolean check = false;
+        StudentLogic stLogic = new StudentLogic();
+        Student[] excellentStudents = stLogic.excellentStudents(st);
 
-        for (int j = 0; j<students.length; j++) {
-            for (int i = 0; i < 5; i++) {
-                if (students[j].getMarks()[i] == 9 || students[j].getMarks()[i] == 10) {
-                    check = true;
-                }
-                else {
-                    check = false;
-                    break;
-                }
-            }
-            if (check == true) {
-                System.out.println("Фамилия ученика: " + students[j].getLastName() + ", группа " + students[j].getGroup());
-            }
+        for (Student student : excellentStudents) {
+            System.out.println("Фамилия ученика: " + student.getLastName()+ ", группа " + student.getGroup());
         }
     }
 }
