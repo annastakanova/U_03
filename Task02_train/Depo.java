@@ -25,4 +25,27 @@ public class Depo {
     public void setTrains(Train[] trains) {
         this.trains = trains;
     }
+
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        Depo depo = (Depo) object;
+        return countOfTrains == depo.countOfTrains &&
+                java.util.Arrays.equals(trains, depo.trains);
+    }
+
+    public int hashCode() {
+        int result = Objects.hash(super.hashCode(), countOfTrains);
+        result = 31 * result + Arrays.hashCode(trains);
+        return result;
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Depo{" +
+                "trains=" + java.util.Arrays.toString(trains) +
+                ", countOfTrains=" + countOfTrains +
+                '}';
+    }
 }
