@@ -1,5 +1,7 @@
 package by.epam.JavaEpam03_classes;
 
+import java.util.Objects;
+
 public class Counter {
     private int value;
     private int maxValue;
@@ -12,14 +14,19 @@ public class Counter {
     }
 
     public Counter(int value, int minValue, int maxValue) {
-        this.maxValue = maxValue;
-        this.minValue = minValue;
-        this.value = value;
+        if (minValue < maxValue) {
+            this.maxValue = maxValue;
+            this.minValue = minValue;
+        }
+        if (value >= minValue || value >= maxValue) {
+            this.value = value;
+        }
     }
 
     public int getValue() {
         return this.value;
     }
+
     public void setValue(int value) {
         this.value = value;
     }
@@ -38,29 +45,39 @@ public class Counter {
         return this.minValue;
     }
 
-    public void increaseValueByOne() {
-        if (isAvailableValue(value) && isAvailableValue(value + 1)) {
-            value++;
-        }
-        else System.out.println("операция не выполнена, так как значение счётчика выходит за максимальный предел допустимых значений");
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Counter counter = (Counter) o;
+        return value == counter.value &&
+                maxValue == counter.maxValue &&
+                minValue == counter.minValue;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, maxValue, minValue);
+    }
+
+    @Override
+    public String toString() {
+        return "Counter{" +
+                "value=" + value +
+                ", maxValue=" + maxValue +
+                ", minValue=" + minValue +
+                '}';
+    }
+
+
+    public void increaseValueByOne() {
+        if (++value > maxValue) {
+            value = minValue;
+        }    }
 
     public void decreaseValueByOne() {
-        if (isAvailableValue(value) && isAvailableValue(value - 1)){
-            value--;}
-        else System.out.println("операция не выполнена, так как значение счётчика выходит за минимальный пределы допустимых значений");
-    }
-
-    private boolean isAvailableValue(int checkingValue) {
-        if (checkingValue >= minValue && checkingValue <= maxValue) {
-            return true;
+        if (--value < minValue) {
+            value = maxValue;
         }
-        return false;
-    }
-    public void getInfo() {
-        System.out.println("Текущее значение счетчика: " + value);
-        System.out.println("минимум: " + minValue);
-        System.out.println("максимум: " + maxValue);
-        System.out.println();
     }
 }
