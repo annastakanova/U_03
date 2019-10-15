@@ -1,5 +1,7 @@
 package by.epam.JavaEpam03_classes;
 
+import java.util.Objects;
+
 public class Customer {
     private int id;
     private long creditCardNum;
@@ -37,31 +39,32 @@ public class Customer {
         bankNum = 15;
     }
 
-
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
+
     public String getSurname() {
         return surname;
     }
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+    public void setSurname(String surname) { this.surname = surname; }
+
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
+
     public String getFatherName() {
         return fatherName;
     }
     public void setFatherName(String secondName) {
         this.fatherName = secondName;
     }
+
     public String getAddress() {
         return address;
     }
@@ -72,7 +75,6 @@ public class Customer {
     public long getCreditCardNum() {
         return creditCardNum;
     }
-
     public void setCreditCardNum(long numberCreditCard) {
         this.creditCardNum = numberCreditCard;
     }
@@ -80,13 +82,39 @@ public class Customer {
     public int getBankNum() {
         return bankNum;
     }
-
     public void setBankNum(int numberBank) {
         this.bankNum = numberBank;
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return id == customer.id &&
+                creditCardNum == customer.creditCardNum &&
+                bankNum == customer.bankNum &&
+                surname.equals(customer.surname) &&
+                name.equals(customer.name) &&
+                fatherName.equals(customer.fatherName) &&
+                address.equals(customer.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, creditCardNum, bankNum, surname, name, fatherName, address);
+    }
+
+    @Override
     public String toString() {
-        return id + " " + surname + " " + " " + fatherName + " " + address + " " + creditCardNum + " " + bankNum;
+        return "Customer{" +
+                "id=" + id +
+                ", creditCardNum=" + creditCardNum +
+                ", bankNum=" + bankNum +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
