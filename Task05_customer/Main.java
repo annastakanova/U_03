@@ -1,16 +1,18 @@
 package by.epam.JavaEpam03_classes;
 //Создать класс Customer, спецификация которого приведена ниже.
 // Определить конструкторы, set- и get- методы и метод toString().
-// Создать второй класс, агрегирующий массив типа Customer, с подходящими конструкторами и методами.
+// Создать второй класс, агрегирующий массив типа Customer, с подходящими конструкторами и методами.
 // Задать критерии выбора данных и вывести эти данные на консоль.
 
-//Класс Customer: id, фамилия, имя, отчество, адрес, номер кредитной карточки, номер банковского счета.
+//Класс Customer: id, фамилия, имя, отчество, адрес, номер кредитной карточки, номер банковского счета.
 
-//Найти и вывести:
-//a) список покупателей в алфавитном порядке;
-//b) список покупателей, у которых номер кредитной карточки находится в заданном интервале
+//Найти и вывести:
+//a) список покупателей в алфавитном порядке;
+//b) список покупателей, у которых номер кредитной карточки находится в заданном интервале
 
 
+import by.epam.JavaEpam03_classes.Customer;
+import by.epam.JavaEpam03_classes.CustomersArray;
 public class Main {
 
     public static void main(String[] args) {
@@ -21,12 +23,19 @@ public class Main {
         customers[3] = new Customer(3,"Булгаков", "Михаил","Афанасьевич","Минск, ул. Коласа, 9-88",6300630063006300L,53);
         customers[4] = new Customer();
 
-        System.out.println("\nCписок покупателей в алфавитном порядке:");
-        CustomersArray sort = new CustomersArray();
+        System.out.println("\nДанные покупателей в алфавитном порядке:");
+        Customerslogic sort = new Customerslogic();
         sort.customerAbcSort(customers);
         sort.printAbcSortedCustomers(customers);
 
-        System.out.println("\nCписок покупателей, у кого номер кредитной карточки находится в интервале от 2400000000000000 до 2800000000000000:");
-        sort.printCustomerCardDiapazon(2400000000000000L,2800000000000000L,customers);
+        System.out.println("\nCписок покупателей, у кого номер кредитной карточки находится в интервале от 2400000000000000 до 2800000000000000:");
+        long a = 2400000000000000L;
+        long b = 2800000000000000L;
+        Customerslogic choose = new Customerslogic();
+        for (int i = 0; i < 5; i++) {
+            if  (customers[i].getCreditCardNum() >= a && customers[i].getCreditCardNum() <= b) {
+                System.out.println(customers[i].getSurname() + " ");
+            }
+        }
     }
 }
