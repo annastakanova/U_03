@@ -1,35 +1,17 @@
 package by.epam.JavaEpam03_classes;
+import by.epam.JavaEpam03_classes.Customer;
+import by.epam.JavaEpam03_classes.CustomersArray;
 
-public class CustomersArray {
-    private Customer[] customer = new Customer[10];
+public class Customerslogic {
 
-    CustomersArray() {
-    };
-
-    CustomersArray(Customer customer) {
-        this.customer[0] = customer;
-    }
-
-    public void addCustomer(Customer customer) {
-        for (int i = 0; i < this.customer.length; i++) {
-            if (this.customer[i] == null) {
-                this.customer[i] = customer;
+    public void removeCustomer(Customer [] customer, int customerId) {
+        for (int i = 0; i < customer.length; i++) {
+            if (customer[i] != null && customer[i].getId() == customerId) {
+                customer[i] = null;
                 break;
             }
-            if (i == this.customer.length - 1 && this.customer[i] != null) {
-                System.out.println("Действие невозможно, массив заполнен");
-            }
-        }
-    }
-
-    public void removeCustomer(int customerId) {
-        for (int i = 0; i < this.customer.length; i++) {
-            if (this.customer[i] != null && this.customer[i].getId() == customerId) {
-                this.customer[i] = null;
-                break;
-            }
-            if (i == this.customer.length - 1
-                    && (this.customer[i] == null || this.customer[i].getId() != customerId)) {
+            if (i == customer.length - 1
+                    && (customer[i] == null || customer[i].getId() != customerId)) {
                 System.out.println("Пользователя с ID " + customerId + "в базе нет");
             }
         }
@@ -52,18 +34,9 @@ public class CustomersArray {
             }
         }
     }
-
     public static void printAbcSortedCustomers(Customer [] customer) {
         for (int i = 0; i < 5; i++) {
             System.out.println(customer[i].toString());
-        }
-    }
-
-    void printCustomerCardDiapazon (long a, long b, Customer [] customer) {
-        for (int i = 0; i < 5; i++) {
-            if  (customer[i].getCreditCardNum() >= a && customer[i].getCreditCardNum() <= b) {
-                System.out.println(customer[i].getSurname() + " ");
-            }
         }
     }
 }
