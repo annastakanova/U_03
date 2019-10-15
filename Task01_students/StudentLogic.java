@@ -36,14 +36,5 @@ public class StudentLogic {
             return excellentStudents;
         }
         return excellentStudents = new Student[0];
-
-
-        /*for (int i = 0; i < student.getMarks().length; i++) {
-            if (student.getMarks()[i] < 9) {
-                isExcellentStudent = false;
-                break;
-            }
-        }
-        return isExcellentStudent;*/
     }
 }
