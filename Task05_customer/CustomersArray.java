@@ -1,42 +1,38 @@
 package by.epam.JavaEpam03_classes;
-import by.epam.JavaEpam03_classes.Customer;
-import by.epam.JavaEpam03_classes.CustomersArray;
 
-public class Customerslogic {
+import java.util.Arrays;
 
-    public void removeCustomer(Customer [] customer, int customerId) {
-        for (int i = 0; i < customer.length; i++) {
-            if (customer[i] != null && customer[i].getId() == customerId) {
-                customer[i] = null;
-                break;
-            }
-            if (i == customer.length - 1
-                    && (customer[i] == null || customer[i].getId() != customerId)) {
-                System.out.println("Пользователя с ID " + customerId + "в базе нет");
-            }
-        }
+public class CustomersArray {
+    private Customer[] customer = new Customer[10];
+
+    CustomersArray() { };
+    CustomersArray(Customer customer) {
+        this.customer[0] = customer;
     }
 
-    void customerAbcSort (Customer [] customer) {
-        Customer customerTemp;
-        boolean temp = false;
-        for (int j = 0; j < 5; j++) {
-            for (int i = 1; i < 5; i ++) {
-                if (customer[i - 1].getSurname().charAt(0) > customer[i].getSurname().charAt(0)) {  //chartAt (int index) возвращает символ, стоящий на индексе
-                    customerTemp = customer[i-1];
-                    customer[i-1] = customer[i];
-                    customer[i] = customerTemp;
-                    temp = true;
-                }
-            }
-            if (!temp) {
-                break;
-            }
-        }
+    public Customer[] getCustomer() {
+        return customer;
     }
-    public static void printAbcSortedCustomers(Customer [] customer) {
-        for (int i = 0; i < 5; i++) {
-            System.out.println(customer[i].toString());
-        }
+
+    public void setCustomer(Customer[] customer) {
+        this.customer = customer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomersArray that = (CustomersArray) o;
+        return Arrays.equals(customer, that.customer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(customer);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomersArray{" + "customer=" + Arrays.toString(customer) + '}';
     }
 }
